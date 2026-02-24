@@ -15,7 +15,7 @@ Fast Kubernetes cluster setup using kubeadm + Calico in under 5 minutes.
 
 ## Requirements
 
-- Ubuntu 22.04/24.04 LTS
+- Ubuntu 22.04/24.04 LTS (primary) or Debian 10/11/12
 - 2+ CPUs, 2+ GB RAM
 - Root access (sudo)
 
