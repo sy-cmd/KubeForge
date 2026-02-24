@@ -19,6 +19,46 @@ Fast Kubernetes cluster setup using kubeadm + Calico in under 5 minutes.
 - 2+ CPUs, 2+ GB RAM
 - Root access (sudo)
 
+## Time Breakdown (Typical)
+
+| Step | Time |
+|------|------|
+| Prerequisites | ~1-2 min |
+| Pull images | ~1 min |
+| kubeadm init | ~30 sec |
+| Calico deploy | ~30 sec |
+| **Total** | **~3-4 min** |
+
+
+## Project Structure
+
+```
+kube-forge/
+├── config.env              # Configuration variables
+├── scripts/
+│   ├── 00-common.sh        # Shared functions
+│   ├── 01-prerequisites.sh  # System setup (all nodes)
+│   ├── 02-pull-images.sh   # Pre-pull k8s images
+│   ├── 03-master.sh        # Initialize master
+│   ├── 04-worker.sh        # Join worker node
+│   ├── 05-calico.sh        # Install Calico CNI
+│   ├── 06-verify.sh        # Verify cluster
+│   ├── 10-all-in-one.sh    # Single-node install
+│   └── 99-uninstall.sh     # Complete uninstall
+└── README.md
+```
+## Configuration
+
+Edit `config.env` to customize:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| K8S_VERSION | latest | Kubernetes version (auto-resolves to latest) |
+| POD_CIDR | 192.168.0.0/16 | Pod network CIDR |
+| SERVICE_CIDR | 10.96.0.0/12 | Service network CIDR |
+| CALICO_VERSION | latest | Calico version (auto-resolves to latest) |
+
+
 ## Quick Start
 
 ### Single-Node Cluster
@@ -55,36 +95,7 @@ sudo bash 04-worker.sh "<join-command>"
 ```bash
 sudo bash 06-verify.sh
 
-
-```
-
-## Configuration
-
-Edit `config.env` to customize:
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| K8S_VERSION | latest | Kubernetes version (auto-resolves to latest) |
-| POD_CIDR | 192.168.0.0/16 | Pod network CIDR |
-| SERVICE_CIDR | 10.96.0.0/12 | Service network CIDR |
-| CALICO_VERSION | latest | Calico version (auto-resolves to latest) |
-
-## Project Structure
-
-```
-kube-forge/
-├── config.env              # Configuration variables
-├── scripts/
-│   ├── 00-common.sh        # Shared functions
-│   ├── 01-prerequisites.sh  # System setup (all nodes)
-│   ├── 02-pull-images.sh   # Pre-pull k8s images
-│   ├── 03-master.sh        # Initialize master
-│   ├── 04-worker.sh        # Join worker node
-│   ├── 05-calico.sh        # Install Calico CNI
-│   ├── 06-verify.sh        # Verify cluster
-│   ├── 10-all-in-one.sh    # Single-node install
-│   └── 99-uninstall.sh     # Complete uninstall
-└── README.md
+![Cluster Verification](img/Screenshot_20260224_143620.png)
 ```
 
 
@@ -99,18 +110,6 @@ journalctl -u kubelet -n 50
 ```bash
 sudo bash 99-uninstall.sh
 ```
-
-## Time Breakdown (Typical)
-
-| Step | Time |
-|------|------|
-| Prerequisites | ~1-2 min |
-| Pull images | ~1 min |
-| kubeadm init | ~30 sec |
-| Calico deploy | ~30 sec |
-| **Total** | **~3-4 min** |
-
-
 
 ## Troubleshooting
 
