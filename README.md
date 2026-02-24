@@ -97,6 +97,7 @@ sudo bash 06-verify.sh
 
 ![Cluster Verification](img/Screenshot_20260224_143620.png)
 ```
+![Cluster Verification](img/Screenshot_20260224_143620.png)
 
 
 
