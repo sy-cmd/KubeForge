@@ -87,14 +87,7 @@ kube-forge/
 └── README.md
 ```
 
-## Troubleshooting
 
-### Cluster not ready
-```bash
-kubectl get nodes
-kubectl get pods -A
-kubectl describe nodes
-```
 
 ### Check kubelet status
 ```bash
@@ -117,12 +110,23 @@ sudo bash 99-uninstall.sh
 | Calico deploy | ~30 sec |
 | **Total** | **~3-4 min** |
 
-### Troubleshooting 
+
+
+## Troubleshooting
+
+### Cluster not ready
+```bash
+kubectl get nodes
+kubectl get pods -A
+kubectl describe nodes
+```
+### Certificates errors 
 when we face certifications errors we need
 ```
 we need to copy the the config file that was created 
 sudo cp /etc/kubernetes/admin.conf ~/.kube/config
 ```
+### kubectl to Apiserver communication errors 
 when we face kubectl communication to the apiserver 
 ```
 WORKERS
